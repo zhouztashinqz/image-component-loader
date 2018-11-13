@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+apply from: "conlib.gradle"
+apply from: "conproject.gradle"
+android {
+    compileSdkVersion buildconfig.compileSdkVersion
+
+
+
+    defaultConfig {
+        minSdkVersion buildconfig.minSdkVersion
+        targetSdkVersion buildconfig.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+buildscript {
+
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+    }
+}
+
+dependencies {
+    implementation sourcelib.glide
+    annotationProcessor sourcelib.glide_compiler
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation googlelib.annotations
+    implementation googlelib.support_v7
+}
+
+repositories {
+    mavenCentral()
+    google()
+    jcenter()
+    google()
+}
