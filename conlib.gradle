@@ -5,6 +5,7 @@ ext{
     greendao_version = "3.2.2"
     sqlcipher_version = "3.5.2"
     glide_version ="4.8.0"
+
     googlelib = [
             gridlayout              : "com.android.support:gridlayout-v7:$support_verison",
             annotations             : "com.android.support:support-annotations:$support_verison",
@@ -13,7 +14,7 @@ ext{
             support_v7               : "com.android.support:appcompat-v7:$support_verison",
             support_design           : "com.android.support:design:$support_verison",
             recyclerview_v7          : "com.android.support:recyclerview-v7:$support_verison",
-            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
+            kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
             constraint_layout:"com.android.support.constraint:constraint-layout:1.1.2"
     ]
     sourcelib = [

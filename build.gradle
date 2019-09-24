@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply from: "conlib.gradle"
 apply from: "conproject.gradle"
 android {
@@ -26,7 +28,7 @@ buildscript {
 
     repositories {
         mavenCentral()
-        google()
+        google() 
         jcenter()
         maven { url "https://jitpack.io" }
     }
@@ -41,6 +43,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation googlelib.annotations
     implementation googlelib.support_v7
+    implementation googlelib.kotlin
 }
 
 repositories {
