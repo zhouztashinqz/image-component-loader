@@ -43,7 +43,7 @@ class ImageLoaderConfig : IImageLoaderConfig {
         if (mShape != null) {
             val shape = mShape
             if (shape is ImageRound) {
-                val corners = RoundedCorners(shape.round)
+                val corners = RoundedCorners(shape.round.toInt())
                 val requestOption = RequestOptions.bitmapTransform(corners)
                 mBuilder.apply(requestOption)
             } else if (shape is ImageCircle) {

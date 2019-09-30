@@ -9,13 +9,9 @@ import com.bumptech.glide.RequestManager
  */
 class GlideImageLoader(c: Context) : IImageLoader {
     private val mManager: RequestManager = Glide.with(c)
-    override fun load(res: Int): IImageLoaderConfig {
-        return ImageLoaderConfig(mManager, res)
-    }
+    override fun load(res: Int) = ImageLoaderConfig(mManager, res)
 
-    override fun load(res: String): IImageLoaderConfig {
-        return ImageLoaderConfig(mManager, res)
-    }
+    override fun load(res: String) = ImageLoaderConfig(mManager, res)
 
 }
 
