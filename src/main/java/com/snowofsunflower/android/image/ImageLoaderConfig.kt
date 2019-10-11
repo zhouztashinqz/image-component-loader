@@ -16,41 +16,61 @@ class ImageLoaderConfig : IImageLoaderConfig {
     private val mManager: RequestManager
     private var mShape: IImageShape? = null
 
+    /**
+     * 构造Int资源访问
+     */
     constructor(manager: RequestManager, res: Int) {
         mBuilder = manager.load(res)
         mManager = manager
     }
 
+    /**
+     *构造文件或者URL访问
+     */
     constructor(manager: RequestManager, fileOrUrl: String) {
         mBuilder = manager.load(fileOrUrl)
         mManager = manager
     }
 
+    /**
+     * 配置错误时候的显示
+     */
     override fun error(res: Int): ImageLoaderConfig {
         return this
     }
 
+    /**
+     * 配置等待显示
+     */
     override fun placeholder(res: Int): ImageLoaderConfig {
         return this
     }
 
+    /**
+     * 配置形状
+     */
     override fun shape(shape: IImageShape): ImageLoaderConfig {
         mShape = shape
         return this
     }
 
     override fun into(iv: ImageView) {
-        if (mShape != null) {
-            val shape = mShape
-            if (shape is ImageRound) {
-                val corners = RoundedCorners(shape.round.toInt())
-                val requestOption = RequestOptions.bitmapTransform(corners)
-                mBuilder.apply(requestOption)
-            } else if (shape is ImageCircle) {
-                val requestOptions = RequestOptions.circleCropTransform()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .skipMemoryCache(true)
-                mBuilder.apply(requestOptions)
+
+        mShape?.run {
+            when (mShape) {
+                is ImageRound -> {
+                    val shape: ImageRound = mShape as ImageRound
+                    val corners = RoundedCorners(shape.round.toInt())
+                    val requestOption = RequestOptions.bitmapTransform(corners)
+                    mBuilder.apply(requestOption)
+                }
+                is ImageCircle -> {
+                    val requestOptions = RequestOptions.circleCropTransform()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                    mBuilder.apply(requestOptions)
+                }
+                else -> null
             }
         }
         mBuilder.into(iv)
