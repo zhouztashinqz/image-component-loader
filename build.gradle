@@ -1,8 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-apply from: "conlib.gradle"
-apply from: "conproject.gradle"
+apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion buildconfig.compileSdkVersion
 
